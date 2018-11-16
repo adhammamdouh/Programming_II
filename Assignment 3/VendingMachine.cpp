@@ -1,118 +1,113 @@
 #include "VendingMachine.h"
 
 
-
-
-
-VendingMachine::VendingMachine()
-{
-}
-
-VendingMachine::VendingMachine(char ProductName[10][30], double Price[10])
+VendingMachine::VendingMachine()				//default Constractor
 {
 	Money = new PayAndReminder(0, 0.0);
-	for (int i = 0; i < 10; ++i)
+}
+
+VendingMachine::VendingMachine(char ProductName[10][30], double Price[10]) // Constractor
+{
+	Money = new PayAndReminder(0, 0.0);			// new alocate the PayAndRemider Object
+	for (int i = 0; i < 10; ++i)				//loop for setting the item'sname, price and the amount
 		items[i] = new Item(ProductName[i], Price[i], 10);
 
 }
 
-
 void VendingMachine::Menu()
 {
-	double m;
-	int choose;
+	double CurrentMoney;                        // the money that the user will pay
+	int choose;									// "choose" ia a vairable to select the item needed
 	cout << "Welcome" << endl;
+	
 	while (true)
 	{
-		short which;
+		short choice;                           // "choice" is a vairale used to select a choice among choices 
 		cout << "Enter your money ======>";
-		cin >> m;
-		Money->SetMoney(m);
+		cin >> CurrentMoney;
+		Money->SetMoney(CurrentMoney);			// set the "currentMoney' to the money
 
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 10; ++i) {			// for loop for printing the items in the vending machine
 			cout << i + 1 << "- " << items[i]->GetName() << endl;
 		}
-		cout << "10- take your money" << endl;
+		cout << "10- take your money" << endl;	// if the use wanna take his money and close the program
 
 		cout << "Choose the item you need ======> ";
-		cin >> choose;
+		cin >> choose;							//selecting the choice that the user need
 
-		if (choose == 10) {
-			cout << "Take your money " << m << endl;
-			Money->SetMoney(0);
-			break;
+		if (choose == 10) {						// if the user wanna his money and close program was selected do the following
+			cout << "Take your money " << CurrentMoney << endl;
+			Money->SetMoney(0);					// setting the money to zero
+			break;								
 		}
 
 		cout << "the price of the " << items[choose - 1]->GetName() << " is ======> " << items[choose - 1]->GetPrice() << endl;
 
-		Check(choose);
+		Check(choose);							// check the selected choice and the money to give the user his remaining amount		
 		cout << "1- Do you wanna close the program" << endl;
 		cout << "2- buy another product" << endl;
-		cin >> which;
-		if (!(bool)(--which)) {
+		cin >> choice;							// choose if close the program or buy another item/product
+		if (!(bool)(--choice)) {
 			break;
 		}
 	}
 
 }
 
-void VendingMachine::Check(int c)
-{
-	int choose = c;
-	short loop = 1;
+void VendingMachine::Check(int &choose)	//"choose"that has the address of the choose of the last function
+{						
+	short loop = 1;								//looping variable
 	
 	while (loop) {
-		Money->SetPrice(items[choose - 1]->GetPrice());
-		loop = Money->CalReminder();
-		if (loop == NoRmindersExist) {
-			cout << "Sorry, i dont have enough money to give you the reminder" << endl;
-			if (Continue()) {
-				cout << "Choose anthor item ======> ";
-				cin >> choose;
-				cout << "the price of the " << items[choose - 1]->GetName() << "is ======> " << items[choose - 1]->GetPrice() << endl;
-			}
-			else
-			{
-				cout << "Take your Money Please" << endl;
-				Money->SetMoney(0.0);
-			}
+		if (items[choose - 1]->GetnumberOfProducts() == NOTExist) { //if the product selected doesn't exist do the following
+			cout << "The " << items[choose - 1]->GetName() << " doesn't exist" << endl;
+			Continue(choose);		// go to Continue Function
+			continue;
 		}
-		else if (loop == LessThanPrice)
+		Money->SetPrice(items[choose - 1]->GetPrice()); //set the price of the item that select to the object "money" of the class PayAndReminder
+		loop = Money->CalReminder();					// asign Calnumber to the looping variable "loop" 
+		if (loop == NoRmindersExist) {					//if the machine doesn't has enough money to give it to the user as a remaining amount
+			cout << "Sorry, i dont have enough money to give you the reminder" << endl;
+			Continue(choose);							// go to Continue Function
+		}
+		else if (loop == LessThanPrice)					// if the Money that the user paid is less than the price of the product
 		{
 			cout << "the money you entered is less than the price of the product" << endl;
-			Continue();
-			if (Continue()) {
-				cout << "Choose anthor item ======> ";
-				cin >> choose;
-				cout << "the price of the " << items[choose-1]->GetName() << " is ======> " << items[choose - 1]->GetPrice() << endl;
-			}
-			else
-			{
-				cout << "Take your Money Please" << endl;
-				Money->SetMoney(0.0);
-			}
+			Continue(choose);							// go to Countine Function
 		}
 	}
+	if (loop == okay) 
+		items[choose - 1]->SetNumberOfProducts(items[choose - 1]->GetnumberOfProducts() - 1); //reducing the amount of the an item by one
 }
 
-bool VendingMachine::Continue()
+void VendingMachine::Continue(int& choice)					//Continue Function
 {
-	int which;
-	cout << "1- do you wanna take your maney" << endl;
-	cout << "2- Do you wanna choose another item" << endl;
-	while (cin >> which, (which != 1 && which != 2))
+	int * choose = &choice;									//Choose ia a pointer to int that point to Choose int the last Function
+	int which;												// Which ia a variable to select between to choices
+	cout << "1- do you wanna take your maney" << endl;		// take your maney
+	cout << "2- Do you wanna choose another item" << endl;	// choosing another item
+
+	while (cin >> which, (which != 1 && which != 2))		//validation loop to select the correct choice
 		cout << "Invalid input\nEnter it again\n";
-	return which-1;
+	
+	if (!(bool)(which - 1)) {								//if the user choosed to take his money
+		cout << "Take your Money Please ======> "<< Money->GetMoney() << endl;	// give it to him
+		Money->SetMoney(0.0);								//setting the money to zero
+	}
+	
+	else													//else if the user choosed to choose another item
+	{
+		cout << "Choose anthor item ======> ";
+		cin >> *choose;										//taking the choose form hime
+		cout << "the price of the " << items[*choose - 1]->GetName() << "is ======> " << items[*choose - 1]->GetPrice() << endl;	//printing the price of the item
+
+	}
+
 }
 
-char* VendingMachine::GetItemName(int index)
-{
-	return items[index]->GetName();
-}
 
-
-VendingMachine::~VendingMachine()
+VendingMachine::~VendingMachine()	//Destractor
 {
-	delete[] items;
-	delete Money;
+	delete[] items;					//deleting the the array ot Item
+	delete Money;					//deleting the pointer to PayAndReminder
 }
