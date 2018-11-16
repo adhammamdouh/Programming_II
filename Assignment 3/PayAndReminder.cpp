@@ -8,7 +8,7 @@ PayAndReminder::PayAndReminder()
 	MoneyExist[2] = 5; MoneyExist[3] = 1; MoneyExist[4] = 0.5;
 	money = 0.0;
 	price = 0.0;
-	reminder = 0.0;
+	RemainingMoney = 0.0;
 	for (int i = 0; i < 5; ++i) {
 		MoneyECount[i] = 3 * i + 10;
 	}
@@ -20,7 +20,7 @@ PayAndReminder::PayAndReminder(int p, double money)
 	MoneyExist[2] = 5; MoneyExist[3] = 1; MoneyExist[4] = 0.5;
 	this->money = money;
 	this->price = p;
-	this->reminder = 0.0;
+	this->RemainingMoney = 0.0;
 	for (int i = 0; i < 5; ++i) {
 		MoneyECount[i] = 3 * i + 10;
 	}
@@ -46,8 +46,8 @@ short PayAndReminder::CalReminder() {
 
 	}
 
-	reminder = money;
-	if (!reminder) {
+	RemainingMoney = money;
+	if (!RemainingMoney) {
 		bool enter = 0;
 		cout << "the Reminder" << endl;
 		for (int i = 0; i < 5; ++i)
@@ -86,9 +86,9 @@ double PayAndReminder::GetMoney()
 	return money;
 }
 
-double PayAndReminder::GetReminder()
+double PayAndReminder::GetRemaingMoney()
 {
-	return reminder;
+	return RemainingMoney;
 }
 
 PayAndReminder::~PayAndReminder()
