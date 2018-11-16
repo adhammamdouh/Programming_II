@@ -56,9 +56,9 @@ void VendingMachine::Menu()
 
 void VendingMachine::Check(int &choose)	//"choose"that has the address of the choose of the last function
 {						
-	short loop = 1;								//looping variable
+	short loop = 2;								//looping variable
 	
-	while (loop) {
+	while (loop != 1) {
 		if (items[choose - 1]->GetnumberOfProducts() == NOTExist) { //if the product selected doesn't exist do the following
 			cout << "The " << items[choose - 1]->GetName() << " doesn't exist" << endl;
 			Continue(choose);		// go to Continue Function
