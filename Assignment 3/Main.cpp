@@ -1,3 +1,12 @@
+// Course:  CS213 - Programming II  - 2018
+// Title:   Assignment III - Problem 0(Vending Machine)
+// Program: CS213-2018-A3-T1-P0
+// Purpose: Vending Machine Program Using OOP.
+// Author:  Adham Mamdouh Mohamed			20170039
+//	    Abe El-Rahman				20170150
+// Date:    17 November 2018
+// Version: 2
+
 #include <iostream>
 #include "VendingMachine.h"
 
