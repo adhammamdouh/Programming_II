@@ -4,11 +4,13 @@
 
 using namespace std;
 
-enum ReminderProcess
+enum ReminderProcess	//enum for 
 {
-	okay = 0,
+	NOTExist = 0,
+	okay,
 	NoRmindersExist,
-	LessThanPrice
+	LessThanPrice,
+	
 };
 
 class PayAndReminder
@@ -16,7 +18,7 @@ class PayAndReminder
 private:
 	double money;
 	double price;
-	double reminder;
+	double RemainingMoney;
 	double MoneyExist[5] ;
 	int MoneyECount[5];
 public:
@@ -25,7 +27,7 @@ public:
 	void SetMoney(double Money);
 	void SetPrice(double Price);
 	double GetMoney();
-	double GetReminder();
+	double GetRemaingMoney();
 	short CalReminder();
 
 	virtual ~PayAndReminder();
