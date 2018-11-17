@@ -32,4 +32,3 @@ public:
 
 	virtual ~PayAndReminder();		//destractor
 };
-
