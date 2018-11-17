@@ -23,4 +23,3 @@ public:
 	int GetnumberOfProducts();	//Getter for the amount of the item
 	virtual ~Item();		//Destractor
 };
-
