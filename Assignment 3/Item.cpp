@@ -1,7 +1,6 @@
 #include "Item.h"
 
 
-
 Item::Item()		//Default destractor
 {
 }
@@ -37,4 +36,3 @@ int Item::GetnumberOfProducts() { return amount; }		//Getter for the amount
 Item::~Item()	//default Destractor
 {
 }
-
