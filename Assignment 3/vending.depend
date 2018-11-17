@@ -26,3 +26,21 @@
 1542396325 source:c:\users\abdo\downloads\fci\oop\vending\vendingmachine.cpp
 	"VendingMachine.h"
 
+1542482832 source:c:\users\abdo\documents\github\programming_ii\assignment 3\main.cpp
+	<iostream>
+	"VendingMachine.h"
+
+1542469298 c:\users\abdo\documents\github\programming_ii\assignment 3\vendingmachine.h
+	<iostream>
+	<string>
+	"Item.h"
+	"PayAndReminder.h"
+
+1542469298 c:\users\abdo\documents\github\programming_ii\assignment 3\item.h
+	<iostream>
+	<cstring>
+
+1542469298 c:\users\abdo\documents\github\programming_ii\assignment 3\payandreminder.h
+	<iostream>
+	<vector>
+
