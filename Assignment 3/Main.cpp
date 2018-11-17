@@ -9,9 +9,6 @@
 // Date:    17 November 2018
 // Version: 2
 
-#include <iostream>
-#include "VendingMachine.h"
-
 using namespace std;
 
 char ProductName[10][30] = { "Pepsi", "CocaCola",			//array carry the name of the product in the machine
