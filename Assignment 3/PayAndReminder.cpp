@@ -2,7 +2,7 @@
 
 
 
-PayAndReminder::PayAndReminder()
+PayAndReminder::PayAndReminder() //default constractor
 {
 	MoneyExist[0] = 20; MoneyExist[1] = 10; 
 	MoneyExist[2] = 5; MoneyExist[3] = 1; MoneyExist[4] = 0.5;
@@ -14,53 +14,57 @@ PayAndReminder::PayAndReminder()
 	}
 }
 
-PayAndReminder::PayAndReminder(int p, double money)
+PayAndReminder::PayAndReminder(int p, double money) //Constractor with p, money parameters
 {
-	MoneyExist[0] = 20; MoneyExist[1] = 10;
-	MoneyExist[2] = 5; MoneyExist[3] = 1; MoneyExist[4] = 0.5;
-	this->money = money;
-	this->price = p;
-	this->RemainingMoney = 0.0;
-	for (int i = 0; i < 5; ++i) {
+	MoneyExist[0] = 20; MoneyExist[1] = 10;							//setting the coin array
+	MoneyExist[2] = 5; MoneyExist[3] = 1; MoneyExist[4] = 0.5;		//...
+	this->money = money;				//setting the money = to money
+	this->price = p;					//setting the price to zero
+	this->RemainingMoney = 0.0;			//setting th eRemaingmoney to zero
+	for (int i = 0; i < 5; ++i) {		//setting the amount of coins in the machiine
 		MoneyECount[i] = 3 * i + 10;
 	}
 }
 
-short PayAndReminder::CalReminder() {
-	if (money < price) return LessThanPrice;
-	money -= price;
-	double ReminderCount[5] = { 0,0,0,0,0 };
-	int i = 0;
+short PayAndReminder::CalReminder() {		
+	if (money < price) return LessThanPrice;	//if the money the user entered is less than the price of the item return "LessThanPrice"
+	RemainingMoney = money - price;				//the remaining amount of money equal to "money - price"				
+	double ReminderCount[5] = { 0,0,0,0,0 };	//calculate the amount of every coin is needed for the remaing process
+	int i = 0 ,coins = 0;
 
-	while (i < 5)
+	while (i < 5)		//while 
 	{
-		if (money == 0.0) break;
-		else if (money < MoneyExist[i] || !MoneyECount[i]) ++i;
-		else
+		if (RemainingMoney == 0.0) break;	
+		else if (RemainingMoney < MoneyExist[i] || !MoneyECount[i]) ++i; /*if the "remainingmoney" is less than the coin 
+																		   or the amount of the coin equal to zero go to the less coins*/
+		else											//Calculationg the remaining money
 		{
-			money -= MoneyExist[i];
-			MoneyECount[i]--;
-			ReminderCount[i]++;
+			++coins;
+			RemainingMoney -= MoneyExist[i];		// reduce the coin from the remaining Money
+			MoneyECount[i]--;						// reduce the index of the coin by "one" 
+			ReminderCount[i]++;						// increase the remaining amount need by "one"
 		}
 
 
 	}
 
-	RemainingMoney = money;
-	if (!RemainingMoney) {
+	if (!RemainingMoney) {						//if find remainders
 		bool enter = 0;
-		cout << "the Reminder" << endl;
-		for (int i = 0; i < 5; ++i)
+		cout << "the Reminder ======> " << endl;
+		for (int i = 0; i < 5; ++i)						//loops for printing the remaining amount of money
 			for (int j = 0; j < ReminderCount[i]; ++j) {
-				cout << MoneyExist[i] << endl;
+				if (j < coins)
+					cout << MoneyExist[i] << ", ";
+				else
+					cout << MoneyExist[i] << endl;
 				enter = 1;
 			}
-		if (!enter) cout << 0 << endl;
+		if (!enter) cout << 0 << endl;			//if no remining money print zero
 		return okay;
 	}
-	else
+	else									//if didn't find the exact remaining money for any problem
 	{
-		for (int i = 0; i < 5; ++i) {
+		for (int i = 0; i < 5; ++i) {			//increas the amount of coins by "the amount of coins that used in the remaining process" again
 			MoneyExist[i] += ReminderCount[i];
 			ReminderCount[i] = 0;
 		}
@@ -69,28 +73,28 @@ short PayAndReminder::CalReminder() {
 	return NoRmindersExist;
 }
 
-void PayAndReminder::SetMoney(double Money)
+void PayAndReminder::SetMoney(double Money)	//Setter for the Money
 {
 	if (money >= 0) this->money = Money;
 	else { money = 0; }
 }
 
-void PayAndReminder::SetPrice(double Price)
+void PayAndReminder::SetPrice(double Price)	//Setter for the Price of the product
 {
 	this->price = Price;
 }
 
 
-double PayAndReminder::GetMoney()
+double PayAndReminder::GetMoney()	//Getter for the Money
 {
 	return money;
 }
 
-double PayAndReminder::GetRemaingMoney()
+double PayAndReminder::GetRemaingMoney()		//Getter for the remaining Money
 {
 	return RemainingMoney;
 }
 
-PayAndReminder::~PayAndReminder()
+PayAndReminder::~PayAndReminder()	//Destractor
 {
 }
