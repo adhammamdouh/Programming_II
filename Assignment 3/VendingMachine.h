@@ -7,6 +7,9 @@
 
 using namespace std;
 
+class Item;
+class PayAndReminder;
+
 class VendingMachine
 {
 private:
@@ -19,7 +22,7 @@ public:
 
 	void Menu();					//Menu function that printing and managing the interface 
 	void Check(int &choice);		//check function, a function that help "Menu"
-	void Continue(int& c);			//Same as Check, a function help the "Menu"
+	bool Continue(int& choice);			//Same as Check, a function help the "Menu"
 
 
 	virtual ~VendingMachine(); //Destractor
