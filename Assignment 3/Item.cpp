@@ -37,3 +37,4 @@ int Item::GetnumberOfProducts() { return amount; }		//Getter for the amount
 Item::~Item()	//default Destractor
 {
 }
+
