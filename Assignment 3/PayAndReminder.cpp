@@ -1,7 +1,6 @@
 #include "PayAndReminder.h"
 
 
-
 PayAndReminder::PayAndReminder() //default constractor
 {
 	MoneyExist[0] = 20; MoneyExist[1] = 10; 
@@ -50,10 +49,12 @@ short PayAndReminder::CalReminder() {
 
 	if (!RemainingMoney) {						//if find remainders
 		bool enter = 0;
-		cout << "the Reminder ======> " << endl;
+		int counter = 0;
+		cout << "the Reminder ======> ";
 		for (int i = 0; i < 5; ++i)						//loops for printing the remaining amount of money
 			for (int j = 0; j < ReminderCount[i]; ++j) {
-				if (j < coins)
+				++counter;
+				if (counter < coins)
 					cout << MoneyExist[i] << ", ";
 				else
 					cout << MoneyExist[i] << endl;
