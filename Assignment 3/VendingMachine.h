@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VENDINGMACHINE_H
+#define VENDINGMACHINE_H
 #include <iostream>
 #include <string>
 #include "Item.h"
@@ -13,18 +14,19 @@ class PayAndReminder;
 class VendingMachine
 {
 private:
-	Item *items[10];		//arrey of size 10 to Item
-	PayAndReminder* Money; // pointer to PayAndRemider
+	Item *items[10];		//array of size 10 to Item
+	PayAndReminder* Money; // pointer to PayAndRemainder
 
 public:
-	VendingMachine();											//Default Constractor
-	VendingMachine(char ProductName[10][30], double Price[10]);	//Another Constractor
+	VendingMachine();											//Default Constructor
+	VendingMachine(char ProductName[10][30], double Price[10]);	//Another Constructor
 
-	void Menu();					//Menu function that printing and managing the interface 
+	void Menu();					//Menu function that printing and managing the interface
 	void Check(int &choice);		//check function, a function that help "Menu"
 	bool Continue(int& choice);			//Same as Check, a function help the "Menu"
 
 
-	virtual ~VendingMachine(); //Destractor
+	virtual ~VendingMachine(); //Destructor
 };
 
+#endif // VENDINGMACHINE_H

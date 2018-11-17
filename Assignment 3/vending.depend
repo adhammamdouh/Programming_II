@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1542460110 source:c:\users\abdo\downloads\fci\oop\vending\item.cpp
+	"Item.h"
+
+1542460101 c:\users\abdo\downloads\fci\oop\vending\item.h
+	<iostream>
+	<cstring>
+
+1542396354 source:c:\users\abdo\downloads\fci\oop\vending\main.cpp
+	<iostream>
+	"VendingMachine.h"
+
+1542396325 c:\users\abdo\downloads\fci\oop\vending\vendingmachine.h
+	<iostream>
+	<string>
+	"Item.h"
+	"PayAndReminder.h"
+
+1542396325 c:\users\abdo\downloads\fci\oop\vending\payandreminder.h
+	<iostream>
+	<vector>
+
+1542396325 source:c:\users\abdo\downloads\fci\oop\vending\payandreminder.cpp
+	"PayAndReminder.h"
+
+1542396325 source:c:\users\abdo\downloads\fci\oop\vending\vendingmachine.cpp
+	"VendingMachine.h"
+

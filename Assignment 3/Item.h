@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ITEM_H
+#define ITEM_H
 #include <iostream>
 #include <cstring>
 
@@ -12,14 +13,15 @@ private:
 	int amount;	// the amount of the item
 
 public:
-	Item();	//Constractor
-	Item(char name[], double price, int amount);		//Constractor
+	Item();	//Constructor
+	Item(char name[], double price, int amount);		//Constructor
 	void SetName(char name[]);		//Setting the Name
 	void SetPrice(double price);	//Setting the price
-	void SetNumberOfProducts(int number);		//Setting the amount of the item		
+	void SetNumberOfProducts(int number);		//Setting the amount of the item
 
 	char* GetName();		//Getter for the name
 	double GetPrice();			//Getter for the Price
 	int GetnumberOfProducts();	//Getter for the amount of the item
-	virtual ~Item();		//Destractor
+	virtual ~Item();		//Destructor
 };
+#endif // ITEM_H
