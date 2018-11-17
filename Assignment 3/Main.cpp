@@ -12,15 +12,15 @@
 
 using namespace std;
 
-char ProductName[10][30] = { "Pepsi", "CocaCola",
+char ProductName[10][30] = { "Pepsi", "CocaCola",			//array carry the name of the product in the machine 
 						  "Orange Juice", "Mango Juice",
 						  "Strawberry Juice", "Cadbury Dariy Milk",
 						  "Cadbury Bubble", "Lays", "Forno", "Chips" };
-double Price[10] = { 5, 5, 3.5, 4, 3.5, 6.5, 8, 7, 5.5, 5 };
+double Price[10] = { 5, 5, 3.5, 4, 3.5, 6.5, 8, 7, 5.5, 5 }; // the price of every product
 
 int main() {
-	VendingMachine v(ProductName, Price);
-	v.Menu();
+	VendingMachine Machine(ProductName, Price);
+	Machine.Menu();
 	system("pause");
 	return 0;
 }
